@@ -84,3 +84,103 @@ def hitung_harga(harga_awal, jumlah):
 print("Harga akhir untuk 1 barang seharga Rp 100.000:", hitung_harga(100000, 1))  # Rp 90.000
 print("Harga akhir untuk 3 barang seharga Rp 100.000:", hitung_harga(100000, 3))  # Rp 260.000
 print("Harga akhir untuk 50 barang seharga Rp 47.295:", hitung_harga(47295, 50))  # Hitung total
+
+==============================================================================================================================================================================
+
+def digitKiriFibonacci(n):
+    if n <= 1:
+        print("n tidak valid!")
+        return
+    
+    fibonacci = []
+    a, b = 1, 1
+    
+    for _ in range(n):
+        fibonacci.append(a)
+        a, b = b, a + b
+    
+    print("Deret bilangan fibonacci:")
+    print(" ".join(map(str, fibonacci)))
+    
+    print("Digit kiri:")
+    for num in fibonacci:
+        # Mencari digit kiri
+        while num >= 10:
+            num //= 10
+        print(num)
+
+digitKiriFibonacci(5)
+
+============================================================================================================================================================================
+
+def hilangkan_anomali(kalimat):
+    hasil = ""
+    
+    for char in kalimat:
+        if char.isalpha() or char.isspace():
+            hasil += char  # Tambahkan karakter yang valid ke hasil
+    
+    if len(hasil) == 0:
+        return "Kalimat Hilang"
+    
+    return hasil
+
+print(hilangkan_anomali("Hello, World! 123"))  # Output: "Hello World"
+print(hilangkan_anomali("12345!@#$%^&*()"))     # Output: "Kalimat Hilang"
+print(hilangkan_anomali("Python is great!"))    # Output: "Python is great"
+
+=============================================================================================================================================================================
+
+def hitungTotalGenap(bilanganAwal, bilanganAkhir):
+    # Validasi input
+    if bilanganAwal > bilanganAkhir:
+        return 0
+    
+    total_genap = 0
+    
+    # Menghitung total bilangan genap dalam rentang
+    for i in range(bilanganAwal, bilanganAkhir + 1):
+        if i % 2 == 0:  # Cek apakah bilangan genap
+            total_genap += i
+    
+    return total_genap
+
+# Contoh penggunaan
+print(hitungTotalGenap(1, 10))  # Output: 30 (2 + 4 + 6 + 8 + 10)
+print(hitungTotalGenap(5, 15))  # Output: 50 (6 + 8 + 10 + 12 + 14)
+print(hitungTotalGenap(3, 3))    # Output: 0 (tidak ada bilangan genap)
+print(hitungTotalGenap(10, 10))  # Output: 10 (10 adalah genap)
+print(hitungTotalGenap(1000, 1000))  # Output: 1000 (1000 adalah genap)
+
+=============================================================================================================================================================================
+
+def deret_gws(jumlah_bilangan, kelipatan, angka_gws1, angka_gws2, kata_gws1, kata_gws2, kata_spesial):
+    # Validasi input
+    if (not all(isinstance(i, int) for i in [jumlah_bilangan, kelipatan, angka_gws1, angka_gws2]) or
+        not all(isinstance(i, str) for i in [kata_gws1, kata_gws2, kata_spesial]) or
+        jumlah_bilangan <= 0 or kelipatan <= 0 or
+        angka_gws1 <= 0 or angka_gws2 <= 0 or
+        angka_gws1 > jumlah_bilangan or angka_gws2 > jumlah_bilangan):
+        print("TIDAK VALID")
+        return
+    
+    # Menghasilkan deret kelipatan
+    for i in range(1, jumlah_bilangan + 1):
+        bilangan = i * kelipatan
+        
+        # Cek kelipatan dan cetak hasil yang sesuai
+        if bilangan % angka_gws1 == 0 and bilangan % angka_gws2 == 0:
+            print(kata_spesial, end=' ')
+        elif bilangan % angka_gws1 == 0:
+            print(kata_gws1, end=' ')
+        elif bilangan % angka_gws2 == 0:
+            print(kata_gws2, end=' ')
+        else:
+            print(bilangan, end=' ')
+
+# Contoh penggunaan
+deret_gws(10, 3, 2, 5, "GWS1", "GWS2", "SPESIAL")
+print()  # Untuk memberikan baris baru setelah output
+deret_gws(5, 4, 1, 2, "KATA1", "KATA2", "KATA_SPESIAL")
+print()  # Untuk memberikan baris baru setelah output
+deret_gws(3, 2, 4, 2, "A", "B", "C")  # TIDAK VALID
