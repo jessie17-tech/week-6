@@ -183,4 +183,23 @@ deret_gws(10, 3, 2, 5, "GWS1", "GWS2", "SPESIAL")
 print()  # Untuk memberikan baris baru setelah output
 deret_gws(5, 4, 1, 2, "KATA1", "KATA2", "KATA_SPESIAL")
 print()  # Untuk memberikan baris baru setelah output
-deret_gws(3, 2, 4, 2, "A", "B", "C")  # TIDAK VALID
+deret_gws(3, 2, 4, 2, "A", "B", "C")  # TIDAK VALIDVALID
+
+def hitung_vokal(kalimat: str) -> int or str:
+    vokal = "aeiouAEIOU"
+    jumlah_vokal = sum(1 for huruf in kalimat if huruf in vokal)
+    
+    if jumlah_vokal > 0:
+        return jumlah_vokal
+    else:
+        return "Tidak ada huruf vokal pada kalimat"
+
+# Contoh test case
+kalimat_1 = "Selamat Pagi"
+kalimat_2 = "xyz"
+hasil_1 = hitung_vokal(kalimat_1)
+hasil_2 = hitung_vokal(kalimat_2)
+
+hasil_1, hasil_2
+
+
