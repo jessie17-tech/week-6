@@ -1,0 +1,86 @@
+def bergelutSamaNicho(lvlNicho, cooldownSkillNicho, namaMusuh, lvlMusuh, cooldownSkillMusuh):
+    nyawaNicho, kekuatanNicho = hitung_status(lvlNicho)
+    
+    nyawaMusuh, kekuatanMusuh = hitung_status(lvlMusuh)
+    
+
+    print("Status Nicho")
+    print("Nyawa:", nyawaNicho)
+    print("Kekuatan:", kekuatanNicho)
+    print()
+    print("Status", namaMusuh)
+    print("Nyawa:", nyawaMusuh)
+    print("Kekuatan:", kekuatanMusuh)
+    print()
+    
+    ronde = 1
+    cooldownNicho = 0
+    cooldownMusuh = 0
+    
+    while nyawaNicho > 0 and nyawaMusuh > 0:
+        if cooldownNicho == 0:
+            nyawaMusuh -= kekuatanNicho
+            cooldownNicho = cooldownSkillNicho
+            skill_used = "skill"
+        else:
+            nyawaMusuh -= kekuatanNicho
+            skill_used = "attack"
+        
+        if nyawaMusuh <= 0:
+            print(f"Nicho menang! {namaMusuh} kalah karena {skill_used} Nicho di ronde ke {ronde}.")
+            return
+        
+        if cooldownMusuh == 0:
+            nyawaNicho -= int(nyawaMusuh * 0.15)  # Skill musuh
+            cooldownMusuh = cooldownSkillMusuh
+            skill_used = "skill"
+        else:
+            nyawaNicho -= kekuatanMusuh
+            skill_used = "attack"
+        
+        if nyawaNicho <= 0:
+            print(f"Nicho kalah! {namaMusuh} kalah karena {skill_used} musuh di ronde ke {ronde}.")
+            return
+        
+        cooldownNicho = max(0, cooldownNicho - 1)
+        cooldownMusuh = max(0, cooldownMusuh - 1)
+        
+        ronde += 1
+        
+def hitung_status(level):
+    nyawa_dasar = 10000
+    kekuatan_dasar = 1000
+    
+    nyawa = nyawa_dasar
+    kekuatan = kekuatan_dasar
+    
+    for _ in range(level):
+        nyawa += nyawa * 0.05 
+        kekuatan += kekuatan * 0.10 
+    
+    return int(nyawa), int(kekuatan)
+
+bergelutSamaNicho(5, 3, "Musuh A", 4, 2)
+
+============================================================================================================================================================================
+
+def hitung_harga(harga_awal, jumlah):
+    if jumlah < 0:
+        return 0
+    
+    total_harga = 0
+    
+    for i in range(jumlah):
+        if i == 0:
+            diskon = 0.10
+        else:
+            diskon = 0.15
+        
+        harga_setelah_diskon = harga_awal - (harga_awal * diskon)
+        total_harga += harga_setelah_diskon
+    
+    return total_harga
+
+print("Harga akhir untuk 1 barang seharga Rp 100.000:", hitung_harga(100000, 1))  # Rp 90.000
+print("Harga akhir untuk 3 barang seharga Rp 100.000:", hitung_harga(100000, 3))  # Rp 260.000
+print("Harga akhir untuk 50 barang seharga Rp 47.295:", hitung_harga(47295, 50))  # Hitung total
